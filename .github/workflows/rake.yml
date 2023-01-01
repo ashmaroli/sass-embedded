@@ -20,3 +20,5 @@ jobs:
         with:
           ruby-version: "2.7"
           bundler-cache: true
+      - name: Test Install
+        run: rake -f -r bundler/gem_tasks install
