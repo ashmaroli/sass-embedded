@@ -4,19 +4,20 @@ on: [push]
 
 jobs:
   build:
-    name: "Rake ${{ matrix.rake_version }}"
+    name: "Rake '~> ${{ matrix.rake_version }}' on Ruby ${{ matrix.ruby_version }}"
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        rake_version: ["~> 10.0.0", "~> 11.0.0", "~> 12.0.0", "~> 13.0.0"]
+        rake_version: ["10.0", "11.0", "12.0", "13.0"]
+        ruby_version: ["2.7", "3.0", "3.1", "3.2"]
     env:
       RAKE_VERSION: ${{ matrix.rake_version }}
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - name: "Set up Ruby 2.7 with Rake ${{ matrix.rake_version }}"
+      - name: "Set up Ruby ${{ matrix.ruby_version }} with Rake ${{ matrix.rake_version }}"
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "2.7"
+          ruby-version: ${{ matrix.ruby_version }}
           bundler-cache: true

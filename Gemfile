@@ -2,5 +2,5 @@
 
 source 'https://rubygems.org'
 
-gem 'rake', ENV['RAKE_VERSION'] if ENV['RAKE_VERSION']
-gem 'jekyll-sass-converter', '~> 2.0'
+gem 'rake', "~> #{ENV['RAKE_VERSION']}" if ENV['RAKE_VERSION']
+gem 'sass-embedded'
