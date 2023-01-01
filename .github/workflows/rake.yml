@@ -1,0 +1,22 @@
+name: Rake Dependency Test
+
+on: [push]
+
+jobs:
+  build:
+    name: "Rake ${{ matrix.rake_version }}"
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        rake_version: ["~> 10.0.0", "~> 11.0.0", "~> 12.0.0", "~> 13.0.0"]
+    env:
+      RAKE_VERSION: ${{ matrix.rake_version }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: "Set up Ruby 2.7 with Rake ${{ matrix.rake_version }}"
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+          bundler-cache: true
